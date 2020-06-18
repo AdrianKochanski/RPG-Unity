@@ -1,4 +1,5 @@
 using System;
+using GameDevTV.Utils;
 using RPG.Core;
 using RPG.Saving;
 using RPG.Stats;
@@ -9,8 +10,8 @@ namespace RPG.Resources {
     {
         [Range(0,100)]
         [SerializeField] float levelUpRegeneration = 70;
-        float health = -1f;
-        float maxHealth;
+        LazyValue<float> health;
+        LazyValue<float> maxHealth;
         bool isDead = false;
 
         BaseStats baseStats;
@@ -21,6 +22,8 @@ namespace RPG.Resources {
             baseStats = GetComponent<BaseStats>();
             animator = GetComponent<Animator>();
             scheduler = GetComponent<ActionScheduler>();
+            health = new LazyValue<float>(GetMaxHealthStat);
+            maxHealth = new LazyValue<float>(GetMaxHealthStat);
         }
 
         private void OnEnable() {
@@ -32,10 +35,8 @@ namespace RPG.Resources {
         }
 
         private void Start() {
-            GetMaxHealthStat();
-            if(health < 0) {
-                health = maxHealth;
-            }
+            health.ForceInit();
+            maxHealth.ForceInit();
         }
 
         private void RegenerateHealth() {
@@ -43,25 +44,25 @@ namespace RPG.Resources {
             // print("health percent: " + GetHealthPercentage() + " ,health regen: " + levelUpRegeneration);
             // print("current: " + health + " ,max: " + maxHealth);
             // print("Health percentage: " + healthPercentage);
-            GetMaxHealthStat();
-            float newHealth = maxHealth * healthPercentage / 100;
-            if(newHealth > maxHealth) {
-                health = maxHealth;
+            maxHealth.value = GetMaxHealthStat();
+            float newHealth = maxHealth.value * healthPercentage / 100;
+            if(newHealth > maxHealth.value) {
+                health.value = maxHealth.value;
             } else {
-                health = newHealth;
+                health.value = newHealth;
             }
         }
 
-        private void GetMaxHealthStat() {
-            maxHealth = baseStats.GetStat(Stat.Health);
+        private float GetMaxHealthStat() {
+            return baseStats.GetStat(Stat.Health);
         }
 
         public float GetMaxHealth() {
-            return maxHealth;
+            return maxHealth.value;
         }
 
         public float GetHealth() {
-            return health;
+            return health.value;
         }
 
         public bool IsDead(){
@@ -70,11 +71,11 @@ namespace RPG.Resources {
 
         public void TakeDamage(GameObject instigator, float damage) {
             print(gameObject.name + " took damage: " + damage);
-            if(damage > health) {
-                health = 0;
+            if(damage > health.value) {
+                health.value = 0;
             }
-            else health -= damage;
-            if(health == 0) {
+            else health.value -= damage;
+            if(health.value == 0) {
                 Die();
                 AwardExperience(instigator);
             }
@@ -87,7 +88,7 @@ namespace RPG.Resources {
         }
 
         public float GetHealthPercentage(){
-            return 100 * health / maxHealth;
+            return 100 * health.value / maxHealth.value;
         }
 
         private void Die(){
@@ -99,13 +100,13 @@ namespace RPG.Resources {
 
         public object CaptureState()
         {
-            return health;
+            return health.value;
         }
 
         public void RestoreState(object state)
         {
-            health = (float)state;
-            if (health == 0)
+            health.value = (float)state;
+            if (health.value == 0)
             {
                 Die();
             }

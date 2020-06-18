@@ -22,9 +22,6 @@ namespace RPG.Movement
             scheduler = GetComponent<ActionScheduler>();
         }
 
-        private void Start() {
-        }
-
         void Update()
         {
             navMeshAgent.enabled = !health.IsDead();

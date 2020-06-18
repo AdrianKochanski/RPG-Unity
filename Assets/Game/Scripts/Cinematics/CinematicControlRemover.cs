@@ -21,9 +21,6 @@ namespace RPG.Cinematics {
         private void Awake() {
             player = GameObject.FindWithTag("Player");
         }
-
-        private void Start() {
-        }
         
         void DisableControl(PlayableDirector pd){
             player.GetComponent<ActionScheduler>().CancellCurrentAction();

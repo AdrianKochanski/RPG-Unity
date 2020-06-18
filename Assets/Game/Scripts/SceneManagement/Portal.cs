@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using GameDevTV.Utils;
 using RPG.Core;
 using UnityEngine;
 using UnityEngine.AI;
@@ -17,10 +18,18 @@ namespace RPG.SceneManagement {
         [SerializeField] float fadingTime = 1f;
         [SerializeField] float fadeWaitTime = 0.5f;
 
-        private Fader fader;
+        private LazyValue<Fader> fader;
+
+        private void Awake() {
+            fader = new LazyValue<Fader>(InitializeFader);
+        }
+
+        private Fader InitializeFader() {
+            return GameObject.FindObjectOfType<Fader>();
+        }
 
         private void Start() {
-            fader = GameObject.FindObjectOfType<Fader>();
+            fader.ForceInit();
         }
         
         private void OnTriggerEnter(Collider other) {
@@ -35,7 +44,7 @@ namespace RPG.SceneManagement {
                 yield break;
             }
             DontDestroyOnLoad(gameObject);
-            yield return fader.FadeOut(fadingTime);
+            yield return fader.value.FadeOut(fadingTime);
             SavingWrapper wrapper = FindObjectOfType<SavingWrapper>();
             wrapper.Save();
             yield return SceneManager.LoadSceneAsync(sceneToLoad);
@@ -44,7 +53,7 @@ namespace RPG.SceneManagement {
             UpdatePlayer(otherPortal);
             wrapper.Save();
             yield return new WaitForSeconds(fadeWaitTime);
-            yield return fader.FadeIn(fadingTime);
+            yield return fader.value.FadeIn(fadingTime);
             Destroy(gameObject);
         }
 

@@ -17,9 +17,6 @@ namespace RPG.Control
             mover = GetComponent<Mover>();
         }
 
-        private void Start() { 
-        }
-
         private void Update()
         {
             if(health.IsDead()) return;
