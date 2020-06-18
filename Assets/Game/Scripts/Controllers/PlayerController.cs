@@ -8,9 +8,16 @@ namespace RPG.Control
     public class PlayerController : MonoBehaviour
     {
         Health health;
+        Fighter fighter;
+        Mover mover;
 
-        private void Start() {
+        private void Awake() {
             health = GetComponent<Health>();
+            fighter = GetComponent<Fighter>();
+            mover = GetComponent<Mover>();
+        }
+
+        private void Start() { 
         }
 
         private void Update()
@@ -27,9 +34,9 @@ namespace RPG.Control
                 CombatTarget target = hit.transform.GetComponent<CombatTarget>();
                 if(target == null) continue;
                 GameObject targetGameObject = target.gameObject;
-                if(!GetComponent<Fighter>().CanAttack(targetGameObject)) continue;
+                if(!fighter.CanAttack(targetGameObject)) continue;
                 if(Input.GetMouseButton(0)){
-                    GetComponent<Fighter>().Attack(targetGameObject);
+                    fighter.Attack(targetGameObject);
                 }
                 return true;
             }
@@ -45,7 +52,7 @@ namespace RPG.Control
             {
                 if (Input.GetMouseButton(0))
                 {
-                    GetComponent<Mover>().StartMoveAction(hit.point, 1f);
+                    mover.StartMoveAction(hit.point, 1f);
                 }
                 return true;
             }

@@ -13,8 +13,25 @@ namespace RPG.Resources {
         float maxHealth;
         bool isDead = false;
 
+        BaseStats baseStats;
+        Animator animator;
+        ActionScheduler scheduler;
+
+        private void Awake() {
+            baseStats = GetComponent<BaseStats>();
+            animator = GetComponent<Animator>();
+            scheduler = GetComponent<ActionScheduler>();
+        }
+
+        private void OnEnable() {
+            baseStats.onLevelUp += RegenerateHealth;
+        }
+
+        private void OnDisable() {
+            baseStats.onLevelUp -= RegenerateHealth;
+        }
+
         private void Start() {
-            GetComponent<BaseStats>().onLevelUp += RegenerateHealth;
             GetMaxHealthStat();
             if(health < 0) {
                 health = maxHealth;
@@ -36,7 +53,7 @@ namespace RPG.Resources {
         }
 
         private void GetMaxHealthStat() {
-            maxHealth = GetComponent<BaseStats>().GetStat(Stat.Health);
+            maxHealth = baseStats.GetStat(Stat.Health);
         }
 
         public float GetMaxHealth() {
@@ -66,7 +83,7 @@ namespace RPG.Resources {
         private void AwardExperience(GameObject instigator) {
             Experience experience = instigator.GetComponent<Experience>();
             if(experience == null) return;
-            experience.GainExperience(GetComponent<BaseStats>().GetStat(Stat.ExperienceReward));
+            experience.GainExperience(baseStats.GetStat(Stat.ExperienceReward));
         }
 
         public float GetHealthPercentage(){
@@ -76,8 +93,8 @@ namespace RPG.Resources {
         private void Die(){
             if(isDead) return;
             isDead = true;
-            GetComponent<Animator>().SetTrigger("die");
-            GetComponent<ActionScheduler>().CancellCurrentAction();
+            animator.SetTrigger("die");
+            scheduler.CancellCurrentAction();
         }
 
         public object CaptureState()

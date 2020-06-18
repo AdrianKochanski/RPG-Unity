@@ -22,17 +22,22 @@ namespace RPG.Control
         Health health;
         GameObject player;
         Mover mover;
+        ActionScheduler scheduler;
 
         Vector3 guardPosition;
         float timeSinceLastSawPlayer = Mathf.Infinity;
         float timeStayedBeyondWaypoint = Mathf.Infinity;
         int currentWaypointIndex = 0;
 
-        private void Start() {
+        private void Awake() {
             fighter = GetComponent<Fighter>();
             player = GameObject.FindWithTag("Player");
             health = GetComponent<Health>();
             mover = GetComponent<Mover>();
+            scheduler = GetComponent<ActionScheduler>();
+        }
+
+        private void Start() {
             guardPosition = transform.position;
         }
 
@@ -42,7 +47,7 @@ namespace RPG.Control
             if (InteractWithCombat()) return;
             if (InteractWithSuspicion()) return;
             if (InteractWithPatrol()) return;
-            GetComponent<ActionScheduler>().CancellCurrentAction();
+            scheduler.CancellCurrentAction();
         }
 
         private bool InteractWithSuspicion()
@@ -51,7 +56,7 @@ namespace RPG.Control
             {
                 timeSinceLastSawPlayer += Time.deltaTime;
                 SetClosestWaypoint();
-                GetComponent<ActionScheduler>().CancellCurrentAction();
+                scheduler.CancellCurrentAction();
                 return true;
             }
             return false;

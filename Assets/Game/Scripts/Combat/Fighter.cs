@@ -20,10 +20,21 @@ namespace RPG.Combat
         Health target;
         float timeSinceLastAttacks = Mathf.Infinity;
         Mover mover;
+        Animator animator;
+        Health healthComp;
+        ActionScheduler scheduler;
+        BaseStats baseStats;
         Weapon currentWeapon = null;
 
-        private void Start() {
+        private void Awake() {
             mover = GetComponent<Mover>();
+            animator = GetComponent<Animator>();
+            healthComp = GetComponent<Health>();
+            scheduler = GetComponent<ActionScheduler>();
+            baseStats = GetComponent<BaseStats>();
+        }
+
+        private void Start() {
             if(currentWeapon == null){
                 EquipWeapon(defaultWeapon);
             }
@@ -48,7 +59,6 @@ namespace RPG.Combat
         public void EquipWeapon(Weapon weapon)
         {
             currentWeapon = weapon;
-            Animator animator = GetComponent<Animator>();
             weapon.Spawn(leftHandTransform, rightHandTransform, animator);
         }
 
@@ -66,8 +76,8 @@ namespace RPG.Combat
 
         private void TriggerStopAttack()
         {
-            GetComponent<Animator>().ResetTrigger("attack");
-            GetComponent<Animator>().SetTrigger("stopAttack");
+            animator.ResetTrigger("attack");
+            animator.SetTrigger("stopAttack");
         }
 
         public bool CanAttack(GameObject combatTarget)
@@ -78,7 +88,7 @@ namespace RPG.Combat
         }
 
         public void Attack(GameObject combatTarget){
-            GetComponent<ActionScheduler>().StartAction(this);
+            scheduler.StartAction(this);
             target = combatTarget.GetComponent<Health>();
         }
 
@@ -99,8 +109,8 @@ namespace RPG.Combat
 
         private void TriggerStartAttack()
         {
-            GetComponent<Animator>().ResetTrigger("stopAttack");
-            GetComponent<Animator>().SetTrigger("attack");
+            animator.ResetTrigger("stopAttack");
+            animator.SetTrigger("attack");
         }
 
         public IEnumerable<float> GetAdditiveModifiersFor(Stat stat)
@@ -120,9 +130,9 @@ namespace RPG.Combat
         //Animation Event on Hit the object
         void Hit(){
             if(target == null) return ;
-            float damage = GetComponent<BaseStats>().GetStat(Stat.Damage);
+            float damage = baseStats.GetStat(Stat.Damage);
             if(currentWeapon.HasProjectile()){
-                currentWeapon.LaunchProjectile(rightHandTransform, leftHandTransform, target, GetComponent<Health>(), damage);
+                currentWeapon.LaunchProjectile(rightHandTransform, leftHandTransform, target, healthComp, damage);
             } else {
                 target.TakeDamage(gameObject, damage);
             }
