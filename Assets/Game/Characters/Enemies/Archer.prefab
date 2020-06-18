@@ -1,0 +1,107 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &1395704743662100409
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1554639891368273558, guid: 6cfa647c928532743b6668ce4f7a44da,
+        type: 3}
+      propertyPath: m_Name
+      value: Archer
+      objectReference: {fileID: 0}
+    - target: {fileID: 7650835024677284595, guid: 6cfa647c928532743b6668ce4f7a44da,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7650835024677284595, guid: 6cfa647c928532743b6668ce4f7a44da,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7650835024677284595, guid: 6cfa647c928532743b6668ce4f7a44da,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7650835024677284595, guid: 6cfa647c928532743b6668ce4f7a44da,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7650835024677284595, guid: 6cfa647c928532743b6668ce4f7a44da,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7650835024677284595, guid: 6cfa647c928532743b6668ce4f7a44da,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7650835024677284595, guid: 6cfa647c928532743b6668ce4f7a44da,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7650835024677284595, guid: 6cfa647c928532743b6668ce4f7a44da,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7650835024677284595, guid: 6cfa647c928532743b6668ce4f7a44da,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7650835024677284595, guid: 6cfa647c928532743b6668ce4f7a44da,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7650835024677284595, guid: 6cfa647c928532743b6668ce4f7a44da,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6616282831032032991, guid: 6cfa647c928532743b6668ce4f7a44da,
+        type: 3}
+      propertyPath: chaseDistance
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 4477895212187416026, guid: 6cfa647c928532743b6668ce4f7a44da,
+        type: 3}
+      propertyPath: health
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 835393213874251766, guid: 6cfa647c928532743b6668ce4f7a44da,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 78be5954566d2d848918e51832341fa3, type: 2}
+    - target: {fileID: 1423431668006467973, guid: 6cfa647c928532743b6668ce4f7a44da,
+        type: 3}
+      propertyPath: defaultWeapon
+      value: 
+      objectReference: {fileID: 11400000, guid: 292d65f653cbf9349ade6930dff3c00e,
+        type: 2}
+    - target: {fileID: 1423431668006467973, guid: 6cfa647c928532743b6668ce4f7a44da,
+        type: 3}
+      propertyPath: defaultWeaponName
+      value: Bow Blue Projectile
+      objectReference: {fileID: 0}
+    - target: {fileID: 1649507813573414414, guid: 6cfa647c928532743b6668ce4f7a44da,
+        type: 3}
+      propertyPath: characterClass
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1649507813573414414, guid: 6cfa647c928532743b6668ce4f7a44da,
+        type: 3}
+      propertyPath: startingLevel
+      value: 2
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6cfa647c928532743b6668ce4f7a44da, type: 3}
