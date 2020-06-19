@@ -20,6 +20,7 @@ namespace RPG.Combat
 
         Health target;
         float timeSinceLastAttacks = Mathf.Infinity;
+        private float chasingSpeed = 1f;
         Mover mover;
         Animator animator;
         Health healthComp;
@@ -52,7 +53,7 @@ namespace RPG.Combat
             if(target.IsDead()) return;
             if (target != null && !GetIsInRange())
             {
-                mover.MoveTo(target.transform.position, 1f);
+                mover.MoveTo(target.transform.position, chasingSpeed);
             }
             else
             {
@@ -156,6 +157,10 @@ namespace RPG.Combat
         public object CaptureState()
         {
             return currentWeapon.value.name;
+        }
+
+        public void SetChasignSpped(float speed) {
+            chasingSpeed = speed;
         }
 
         public void RestoreState(object state)

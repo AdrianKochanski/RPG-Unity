@@ -125,6 +125,7 @@ namespace RPG.Control
         private void StartAttack()
         {
             if (!fighter.CanAttack(player)) return;
+            fighter.SetChasignSpped(chasingSpeedFraction);
             fighter.Attack(player);
         }
 
