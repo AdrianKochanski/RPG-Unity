@@ -36,7 +36,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 7324151441650953247}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -203,6 +204,8 @@ MonoBehaviour:
   startingLevel: 1
   characterClass: 1
   progression: {fileID: 11400000, guid: 718b44ac0679e7646b6f5fbf67f551d1, type: 2}
+  levelUpParticleEffect: {fileID: 0}
+  shouldUseModifiers: 0
 --- !u!114 &4938836007297540193
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -215,4 +218,107 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23eb17ba93d86a148bed25b65a5ff430, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
+  levelUpRegeneration: 70
+  takeDamage:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6079653198185307699}
+        m_MethodName: Spawn
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: RPG.Resources.Health+TakeDamageEvent, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+--- !u!1001 &3982953293395030399
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4776819275740611251}
+    m_Modifications:
+    - target: {fileID: 7868886732228085393, guid: 6ab3c5e6a26b7a34fbc805d27b784499,
+        type: 3}
+      propertyPath: m_Name
+      value: Damage Text Spawner
+      objectReference: {fileID: 0}
+    - target: {fileID: 5972571370948484448, guid: 6ab3c5e6a26b7a34fbc805d27b784499,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5972571370948484448, guid: 6ab3c5e6a26b7a34fbc805d27b784499,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5972571370948484448, guid: 6ab3c5e6a26b7a34fbc805d27b784499,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5972571370948484448, guid: 6ab3c5e6a26b7a34fbc805d27b784499,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5972571370948484448, guid: 6ab3c5e6a26b7a34fbc805d27b784499,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5972571370948484448, guid: 6ab3c5e6a26b7a34fbc805d27b784499,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5972571370948484448, guid: 6ab3c5e6a26b7a34fbc805d27b784499,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5972571370948484448, guid: 6ab3c5e6a26b7a34fbc805d27b784499,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5972571370948484448, guid: 6ab3c5e6a26b7a34fbc805d27b784499,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5972571370948484448, guid: 6ab3c5e6a26b7a34fbc805d27b784499,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5972571370948484448, guid: 6ab3c5e6a26b7a34fbc805d27b784499,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6ab3c5e6a26b7a34fbc805d27b784499, type: 3}
+--- !u!4 &7324151441650953247 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5972571370948484448, guid: 6ab3c5e6a26b7a34fbc805d27b784499,
+    type: 3}
+  m_PrefabInstance: {fileID: 3982953293395030399}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6079653198185307699 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7140754857453907788, guid: 6ab3c5e6a26b7a34fbc805d27b784499,
+    type: 3}
+  m_PrefabInstance: {fileID: 3982953293395030399}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61ae7c446fc0952428bfedfdd2114ea9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

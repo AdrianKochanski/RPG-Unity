@@ -4,12 +4,19 @@ using RPG.Core;
 using RPG.Saving;
 using RPG.Stats;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace RPG.Resources {
     public class Health : MonoBehaviour, ISaveable
     {
         [Range(0,100)]
         [SerializeField] float levelUpRegeneration = 70;
+        [SerializeField] TakeDamageEvent takeDamage;
+
+        [Serializable]
+        public class TakeDamageEvent : UnityEvent<float> {
+        }
+
         LazyValue<float> health;
         LazyValue<float> maxHealth;
         bool isDead = false;
@@ -78,6 +85,8 @@ namespace RPG.Resources {
             if(health.value == 0) {
                 Die();
                 AwardExperience(instigator);
+            } else {
+                takeDamage.Invoke(damage);
             }
         }
 
