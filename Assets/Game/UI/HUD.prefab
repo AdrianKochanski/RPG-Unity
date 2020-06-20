@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2594363559610199549}
   - component: {fileID: 1417699292361414496}
   - component: {fileID: 1410806693989892604}
-  - component: {fileID: 8911764170768284538}
+  - component: {fileID: 490858421972228873}
   m_Layer: 5
   m_Name: LevelValue
   m_TagString: Untagged
@@ -80,7 +80,7 @@ MonoBehaviour:
     m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: NaN
---- !u!114 &8911764170768284538
+--- !u!114 &490858421972228873
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -103,7 +103,7 @@ GameObject:
   - component: {fileID: 8162378872037208798}
   - component: {fileID: 223162293002314983}
   - component: {fileID: 1471413382319274621}
-  - component: {fileID: 1468670905147360344}
+  - component: {fileID: 8427323625735498202}
   m_Layer: 5
   m_Name: Health Value
   m_TagString: Untagged
@@ -172,7 +172,7 @@ MonoBehaviour:
     m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: 100%
---- !u!114 &1468670905147360344
+--- !u!114 &8427323625735498202
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -195,7 +195,7 @@ GameObject:
   - component: {fileID: 3753530149720439082}
   - component: {fileID: 8275369162030037407}
   - component: {fileID: 8476170463547754711}
-  - component: {fileID: 1652368841750074035}
+  - component: {fileID: 4501457398907245976}
   m_Layer: 5
   m_Name: XPValue
   m_TagString: Untagged
@@ -264,7 +264,7 @@ MonoBehaviour:
     m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: NaN
---- !u!114 &1652368841750074035
+--- !u!114 &4501457398907245976
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -784,7 +784,7 @@ GameObject:
   - component: {fileID: 4657028552751408375}
   - component: {fileID: 3756196806768773971}
   - component: {fileID: 9022843566903388646}
-  - component: {fileID: 6677768453148429671}
+  - component: {fileID: 5965861579692476043}
   m_Layer: 5
   m_Name: Enemy Value
   m_TagString: Untagged
@@ -853,7 +853,7 @@ MonoBehaviour:
     m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: Not found
---- !u!114 &6677768453148429671
+--- !u!114 &5965861579692476043
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
