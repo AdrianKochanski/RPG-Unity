@@ -15,7 +15,7 @@ namespace RPG.Combat
         [SerializeField] float timeBetweenAttacks = 1f;
         [SerializeField] Transform rightHandTransform = null;
         [SerializeField] Transform leftHandTransform = null;
-        [SerializeField] Weapon defaultWeapon = null;
+        [SerializeField] WeaponConfig defaultWeapon = null;
         [SerializeField] string defaultWeaponName = "Unarmed";
 
         Health target;
@@ -26,6 +26,7 @@ namespace RPG.Combat
         Health healthComp;
         ActionScheduler scheduler;
         BaseStats baseStats;
+        WeaponConfig currentWeaponConfig;
         LazyValue<Weapon> currentWeapon;
 
         private void Awake() {
@@ -34,20 +35,21 @@ namespace RPG.Combat
             healthComp = GetComponent<Health>();
             scheduler = GetComponent<ActionScheduler>();
             baseStats = GetComponent<BaseStats>();
+            currentWeaponConfig = defaultWeapon;
             currentWeapon = new LazyValue<Weapon>(SetupDefaultWeapon);
         }
 
         private Weapon SetupDefaultWeapon() {
-            AttachWeapon(defaultWeapon);
-            return defaultWeapon;
+            return AttachWeapon(defaultWeapon);
         }
 
         private void Start() {
+            print("Start force initial default weapon");
+            //AttachWeapon(currentWeaponConfig);
             currentWeapon.ForceInit();
         }
 
-        private void Update()
-        {
+        private void Update() {
             timeSinceLastAttacks += Time.deltaTime;
             if(target ==null) return;
             if(target.IsDead()) return;
@@ -62,37 +64,33 @@ namespace RPG.Combat
             }
         }
 
-        public void EquipWeapon(Weapon weapon)
-        {
-            currentWeapon.value = weapon;
-            AttachWeapon(weapon);
+        public void EquipWeapon(WeaponConfig weapon) {
+            print("equipping weapon: " + weapon.name);
+            currentWeaponConfig = weapon;
+            currentWeapon.value =  AttachWeapon(weapon);
         }
 
-        private void AttachWeapon(Weapon weapon)
-        {
-            weapon.Spawn(leftHandTransform, rightHandTransform, animator);
+        private Weapon AttachWeapon(WeaponConfig weapon) {
+            print("attaching weapon: " + weapon.name);
+            return weapon.Spawn(leftHandTransform, rightHandTransform, animator);
         }
 
-        private bool GetIsInRange()
-        {
-            return Vector3.Distance(target.transform.position, transform.position) < currentWeapon.value.getWeaponRange();
+        private bool GetIsInRange() {
+            return Vector3.Distance(target.transform.position, transform.position) < currentWeaponConfig.getWeaponRange();
         }
 
-        public void Cancel()
-        {
+        public void Cancel() {
             TriggerStopAttack();
             target = null;
             mover.Cancel();
         }
 
-        private void TriggerStopAttack()
-        {
+        private void TriggerStopAttack() {
             animator.ResetTrigger("attack");
             animator.SetTrigger("stopAttack");
         }
 
-        public bool CanAttack(GameObject combatTarget)
-        {
+        public bool CanAttack(GameObject combatTarget) {
             if (combatTarget == null) return false;
             Health targetToTest = combatTarget.GetComponent<Health>();
             return targetToTest != null && !targetToTest.IsDead();
@@ -107,8 +105,7 @@ namespace RPG.Combat
             return target;
         }
 
-        private void AttackBehaviour()
-        {
+        private void AttackBehaviour() {
             if(timeSinceLastAttacks > timeBetweenAttacks)
             {
                 // this will trigger the Hit() event
@@ -118,23 +115,20 @@ namespace RPG.Combat
             }
         }
 
-        private void TriggerStartAttack()
-        {
+        private void TriggerStartAttack() {
             animator.ResetTrigger("stopAttack");
             animator.SetTrigger("attack");
         }
 
-        public IEnumerable<float> GetAdditiveModifiersFor(Stat stat)
-        {
+        public IEnumerable<float> GetAdditiveModifiersFor(Stat stat) {
             if(stat == Stat.Damage) {
-                yield return currentWeapon.value.getWeaponDamage();
+                yield return currentWeaponConfig.getWeaponDamage();
             }
         }
 
-        public IEnumerable<float> GetPercentageModifiersFor(Stat stat)
-        {
+        public IEnumerable<float> GetPercentageModifiersFor(Stat stat) {
             if (stat == Stat.Damage) {
-                yield return currentWeapon.value.GetPercentageDamageBonus();
+                yield return currentWeaponConfig.GetPercentageDamageBonus();
             }
         }
 
@@ -142,31 +136,29 @@ namespace RPG.Combat
         void Hit(){
             if(target == null) return ;
             float damage = baseStats.GetStat(Stat.Damage);
-            if(currentWeapon.value.HasProjectile()){
-                currentWeapon.value.LaunchProjectile(rightHandTransform, leftHandTransform, target, healthComp, damage);
+            if(currentWeaponConfig.HasProjectile()){
+                currentWeaponConfig.LaunchProjectile(rightHandTransform, leftHandTransform, target, healthComp, damage);
             } else {
                 target.TakeDamage(gameObject, damage);
             }
-            
         }
 
-        void Shoot(){
+        void Shoot() {
             Hit();
         }
 
-        public object CaptureState()
-        {
-            return currentWeapon.value.name;
+        public object CaptureState() {
+            return currentWeaponConfig.name;
         }
 
         public void SetChasignSpped(float speed) {
             chasingSpeed = speed;
         }
 
-        public void RestoreState(object state)
-        {
+        public void RestoreState(object state) {
+            print("Restoring the state");
             string weaponName = (string)state;
-            Weapon weapon = UnityEngine.Resources.Load<Weapon>(weaponName);
+            WeaponConfig weapon = UnityEngine.Resources.Load<WeaponConfig>(weaponName);
             EquipWeapon(weapon);
         }
     }
