@@ -44,8 +44,6 @@ namespace RPG.Combat
         }
 
         private void Start() {
-            print("Start force initial default weapon");
-            //AttachWeapon(currentWeaponConfig);
             currentWeapon.ForceInit();
         }
 
@@ -65,13 +63,11 @@ namespace RPG.Combat
         }
 
         public void EquipWeapon(WeaponConfig weapon) {
-            print("equipping weapon: " + weapon.name);
             currentWeaponConfig = weapon;
             currentWeapon.value =  AttachWeapon(weapon);
         }
 
         private Weapon AttachWeapon(WeaponConfig weapon) {
-            print("attaching weapon: " + weapon.name);
             return weapon.Spawn(leftHandTransform, rightHandTransform, animator);
         }
 
@@ -156,7 +152,6 @@ namespace RPG.Combat
         }
 
         public void RestoreState(object state) {
-            print("Restoring the state");
             string weaponName = (string)state;
             WeaponConfig weapon = UnityEngine.Resources.Load<WeaponConfig>(weaponName);
             EquipWeapon(weapon);
