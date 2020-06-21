@@ -106,6 +106,10 @@ namespace RPG.Attributes {
             experience.GainExperience(baseStats.GetStat(Stat.ExperienceReward));
         }
 
+        public void Heal(float amount) {
+            health.value = Math.Min(maxHealth.value, health.value + amount);
+        }
+
         public float GetHealthPercentage(){
             return 100 * GetFraction();
         }
