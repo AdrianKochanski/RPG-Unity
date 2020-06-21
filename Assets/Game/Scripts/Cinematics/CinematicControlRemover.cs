@@ -10,12 +10,12 @@ namespace RPG.Cinematics {
         
         private void OnEnable() {
             GetComponent<PlayableDirector>().played += DisableControl;
-            GetComponent<PlayableDirector>().stopped += Enablecontrol;
+            GetComponent<PlayableDirector>().stopped += EnableControl;
         }
 
         private void OnDisable() {
             GetComponent<PlayableDirector>().played -= DisableControl;
-            GetComponent<PlayableDirector>().stopped -= Enablecontrol;
+            GetComponent<PlayableDirector>().stopped -= EnableControl;
         }
 
         private void Awake() {
@@ -23,12 +23,11 @@ namespace RPG.Cinematics {
         }
         
         void DisableControl(PlayableDirector pd){
-            player.GetComponent<ActionScheduler>().CancellCurrentAction();
-            player.GetComponent<PlayerController>().enabled = false;
+            player.GetComponent<PlayerController>().DisablePlayer();
         }
 
-        void Enablecontrol(PlayableDirector pd){
-            player.GetComponent<PlayerController>().enabled = true;
+        void EnableControl(PlayableDirector pd){
+            player.GetComponent<PlayerController>().EnablePlayer();
         }
     }
 }

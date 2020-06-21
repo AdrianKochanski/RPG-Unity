@@ -5,6 +5,7 @@ using RPG.Attributes;
 using System;
 using UnityEngine.EventSystems;
 using UnityEngine.AI;
+using RPG.Core;
 
 namespace RPG.Control
 {
@@ -13,6 +14,7 @@ namespace RPG.Control
         Health health;
         Fighter fighter;
         Mover mover;
+        ActionScheduler scheduler;
 
         [Serializable]
         struct CursorMapping {
@@ -29,6 +31,7 @@ namespace RPG.Control
             health = GetComponent<Health>();
             fighter = GetComponent<Fighter>();
             mover = GetComponent<Mover>();
+            scheduler = GetComponent<ActionScheduler>();
         }
 
         private void Update() {
@@ -136,6 +139,15 @@ namespace RPG.Control
 
         private static Ray GetMouseRay() {
             return Camera.main.ScreenPointToRay(Input.mousePosition);
+        }
+
+        public void DisablePlayer() {
+            scheduler.CancellCurrentAction();
+            this.enabled = false;
+        }
+
+        public void EnablePlayer() {
+            this.enabled = true;
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using GameDevTV.Utils;
+using RPG.Control;
 using RPG.Core;
 using UnityEngine;
 using UnityEngine.AI;
@@ -19,9 +20,18 @@ namespace RPG.SceneManagement {
         [SerializeField] float fadeWaitTime = 0.5f;
 
         private LazyValue<Fader> fader;
+        GameObject player;
+        PlayerController playerController;
 
         private void Awake() {
             fader = new LazyValue<Fader>(InitializeFader);
+            player = GameObject.FindWithTag("Player");
+            playerController = player.GetComponent<PlayerController>();
+        }
+
+        private void FindPlayerOnScene() {
+            player = GameObject.FindWithTag("Player");
+            playerController = player.GetComponent<PlayerController>();
         }
 
         private Fader InitializeFader() {
@@ -44,16 +54,19 @@ namespace RPG.SceneManagement {
                 yield break;
             }
             DontDestroyOnLoad(gameObject);
+            playerController.DisablePlayer();
             yield return fader.value.FadeOut(fadingTime);
             SavingWrapper wrapper = FindObjectOfType<SavingWrapper>();
             wrapper.Save();
             yield return SceneManager.LoadSceneAsync(sceneToLoad);
+            FindPlayerOnScene();
+            playerController.DisablePlayer();
             wrapper.Load();
-            Portal otherPortal = GetOtherPortal();
-            UpdatePlayer(otherPortal);
+            UpdatePlayer(GetOtherPortal());
             wrapper.Save();
             yield return new WaitForSeconds(fadeWaitTime);
-            yield return fader.value.FadeIn(fadingTime);
+            fader.value.FadeIn(fadingTime);
+            playerController.EnablePlayer();
             Destroy(gameObject);
         }
 
@@ -67,9 +80,7 @@ namespace RPG.SceneManagement {
             return null;
         }
 
-        private void UpdatePlayer(Portal otherPortal)
-        {
-            GameObject player = GameObject.FindWithTag("Player");
+        private void UpdatePlayer(Portal otherPortal) {
             if(player != null && otherPortal != null){
                 player.GetComponent<NavMeshAgent>().enabled = false;
                 player.transform.position = otherPortal.SpawnPoint.position;
