@@ -29,7 +29,7 @@ MonoBehaviour:
     texture: {fileID: 2800000, guid: f8c873f1e53e83f4aabf342d6be1dfc3, type: 3}
     hotspot: {x: 0, y: 0}
   maxNavMeshProjectionDistance: 1
-  maxPathLength: 40
+  raycastRadius: 1
 --- !u!114 &6355517583034136959
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -50,11 +50,72 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 994859840, guid: f4571864d97111f458ca76cd9293a975, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1604195993255533978, guid: f4571864d97111f458ca76cd9293a975,
+        type: 3}
+      propertyPath: health
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 1761062090527980965, guid: f4571864d97111f458ca76cd9293a975,
+        type: 3}
+      propertyPath: uniqueIdentifier
+      value: player
+      objectReference: {fileID: 0}
+    - target: {fileID: 4298291904192352709, guid: f4571864d97111f458ca76cd9293a975,
+        type: 3}
+      propertyPath: weapon
+      value: 
+      objectReference: {fileID: 11400000, guid: b55f5a96b0ce8f44d9a6cc856704804c,
+        type: 2}
+    - target: {fileID: 4298291904192352709, guid: f4571864d97111f458ca76cd9293a975,
+        type: 3}
+      propertyPath: handTransform
+      value: 
+      objectReference: {fileID: 4626208437471237148}
+    - target: {fileID: 4298291904192352709, guid: f4571864d97111f458ca76cd9293a975,
+        type: 3}
+      propertyPath: rightHandTransform
+      value: 
+      objectReference: {fileID: 4626208437471237148}
+    - target: {fileID: 4298291904192352709, guid: f4571864d97111f458ca76cd9293a975,
+        type: 3}
+      propertyPath: leftHandTransform
+      value: 
+      objectReference: {fileID: 4626208437471179892}
+    - target: {fileID: 4298291904192352709, guid: f4571864d97111f458ca76cd9293a975,
+        type: 3}
+      propertyPath: defaultWeaponName
+      value: Unarmed
+      objectReference: {fileID: 0}
     - target: {fileID: 4464371832701308630, guid: f4571864d97111f458ca76cd9293a975,
         type: 3}
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 4504629475392480846, guid: f4571864d97111f458ca76cd9293a975,
+        type: 3}
+      propertyPath: characterClass
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4504629475392480846, guid: f4571864d97111f458ca76cd9293a975,
+        type: 3}
+      propertyPath: startingLevel
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4504629475392480846, guid: f4571864d97111f458ca76cd9293a975,
+        type: 3}
+      propertyPath: shouldUseModifiers
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4504629475392480846, guid: f4571864d97111f458ca76cd9293a975,
+        type: 3}
+      propertyPath: levelUpParticleEffect
+      value: 
+      objectReference: {fileID: 1385926755715957082, guid: ad28550d5a95927479e026008aacb2fc,
+        type: 3}
     - target: {fileID: 4776819275740611251, guid: f4571864d97111f458ca76cd9293a975,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -115,66 +176,10 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 4298291904192352709, guid: f4571864d97111f458ca76cd9293a975,
-        type: 3}
-      propertyPath: weapon
-      value: 
-      objectReference: {fileID: 11400000, guid: b55f5a96b0ce8f44d9a6cc856704804c,
-        type: 2}
-    - target: {fileID: 4298291904192352709, guid: f4571864d97111f458ca76cd9293a975,
-        type: 3}
-      propertyPath: handTransform
-      value: 
-      objectReference: {fileID: 4626208437471237148}
-    - target: {fileID: 4298291904192352709, guid: f4571864d97111f458ca76cd9293a975,
-        type: 3}
-      propertyPath: rightHandTransform
-      value: 
-      objectReference: {fileID: 4626208437471237148}
-    - target: {fileID: 4298291904192352709, guid: f4571864d97111f458ca76cd9293a975,
-        type: 3}
-      propertyPath: leftHandTransform
-      value: 
-      objectReference: {fileID: 4626208437471179892}
-    - target: {fileID: 4298291904192352709, guid: f4571864d97111f458ca76cd9293a975,
-        type: 3}
-      propertyPath: defaultWeaponName
-      value: Unarmed
-      objectReference: {fileID: 0}
-    - target: {fileID: 4504629475392480846, guid: f4571864d97111f458ca76cd9293a975,
-        type: 3}
-      propertyPath: characterClass
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4504629475392480846, guid: f4571864d97111f458ca76cd9293a975,
-        type: 3}
-      propertyPath: startingLevel
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4504629475392480846, guid: f4571864d97111f458ca76cd9293a975,
-        type: 3}
-      propertyPath: shouldUseModifiers
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4504629475392480846, guid: f4571864d97111f458ca76cd9293a975,
-        type: 3}
-      propertyPath: levelUpParticleEffect
-      value: 
-      objectReference: {fileID: 1385926755715957082, guid: ad28550d5a95927479e026008aacb2fc,
-        type: 3}
-    - target: {fileID: 994859840, guid: f4571864d97111f458ca76cd9293a975, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7853285183322617897, guid: f4571864d97111f458ca76cd9293a975,
         type: 3}
       propertyPath: m_IsTrigger
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1604195993255533978, guid: f4571864d97111f458ca76cd9293a975,
-        type: 3}
-      propertyPath: health
-      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f4571864d97111f458ca76cd9293a975, type: 3}

@@ -33,6 +33,7 @@ namespace RPG.Control
         float timeStayedBeyondWaypoint = Mathf.Infinity;
         float timeSinceAggrevated = Mathf.Infinity;
         int currentWaypointIndex = 0;
+        bool wasAggrevated = false;
 
         private void Awake() {
             fighter = GetComponent<Fighter>();
@@ -60,9 +61,11 @@ namespace RPG.Control
         }
 
         public void Aggrevate() {
-            if(!WasRecentlyAggrevated()) {
+            if(!wasAggrevated) {
+                wasAggrevated = true;
                 timeSinceAggrevated = 0;
-            }
+                return;
+            }      
         }
 
         private bool InteractWithSuspicion() {
@@ -71,6 +74,8 @@ namespace RPG.Control
                 SetClosestWaypoint();
                 scheduler.CancellCurrentAction();
                 return true;
+            } else {
+                wasAggrevated = false;
             }
             return false;
         }
@@ -113,7 +118,7 @@ namespace RPG.Control
 
         private bool InteractWithCombat() {
             timeSinceAggrevated += Time.deltaTime;
-            if (IsAggrevated() && fighter.CanAttack(player)) {
+            if ((CanChase() || IsAggrevated()) && fighter.CanAttack(player)) {
                 timeSinceLastSawPlayer = 0f;
                 StartAttack();
                 return true;
@@ -122,10 +127,9 @@ namespace RPG.Control
         }
 
         private void StartAttack() {
-            if (!fighter.CanAttack(player)) return;
             fighter.SetChasignSpped(chasingSpeedFraction);
             fighter.Attack(player);
-            AggregateNearbyEnemies();
+            AggregateNearbyEnemies(); 
         }
 
         private void AggregateNearbyEnemies() {
@@ -135,12 +139,12 @@ namespace RPG.Control
             }
         }
 
-        private bool IsAggrevated() {
+        private bool CanChase() {
             float distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
-            return distanceToPlayer < chaseDistance || WasRecentlyAggrevated();
+            return distanceToPlayer < chaseDistance;
         }
 
-        private bool WasRecentlyAggrevated() {
+        private bool IsAggrevated() {
             return timeSinceAggrevated < aggroCooldownTime;
         }
 
