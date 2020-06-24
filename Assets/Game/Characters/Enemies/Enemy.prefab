@@ -338,6 +338,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4938836007297540193, guid: f4571864d97111f458ca76cd9293a975,
         type: 3}
+      propertyPath: takeDamage.m_PersistentCalls.m_Calls.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4938836007297540193, guid: f4571864d97111f458ca76cd9293a975,
+        type: 3}
       propertyPath: updateBar.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 0
       objectReference: {fileID: 0}
@@ -359,6 +364,31 @@ PrefabInstance:
     - target: {fileID: 4938836007297540193, guid: f4571864d97111f458ca76cd9293a975,
         type: 3}
       propertyPath: updateBar.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 4938836007297540193, guid: f4571864d97111f458ca76cd9293a975,
+        type: 3}
+      propertyPath: takeDamage.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4938836007297540193, guid: f4571864d97111f458ca76cd9293a975,
+        type: 3}
+      propertyPath: takeDamage.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4938836007297540193, guid: f4571864d97111f458ca76cd9293a975,
+        type: 3}
+      propertyPath: takeDamage.m_PersistentCalls.m_Calls.Array.data[2].m_Target
+      value: 
+      objectReference: {fileID: 6616282831032032991}
+    - target: {fileID: 4938836007297540193, guid: f4571864d97111f458ca76cd9293a975,
+        type: 3}
+      propertyPath: takeDamage.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
+      value: Aggrevate
+      objectReference: {fileID: 0}
+    - target: {fileID: 4938836007297540193, guid: f4571864d97111f458ca76cd9293a975,
+        type: 3}
+      propertyPath: takeDamage.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 1604195993255533978, guid: f4571864d97111f458ca76cd9293a975,
