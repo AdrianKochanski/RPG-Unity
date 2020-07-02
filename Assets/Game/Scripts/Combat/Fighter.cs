@@ -4,6 +4,7 @@ using RPG.Core;
 using RPG.Movement;
 using RPG.Attributes;
 using GameDevTV.Saving;
+using GameDevTV.Inventories;
 using RPG.Stats;
 using UnityEngine;
 
@@ -19,6 +20,7 @@ namespace RPG.Combat
         [SerializeField] string defaultWeaponName = "Unarmed";
 
         Health target;
+        Equipment equipment;
         float timeSinceLastAttacks = Mathf.Infinity;
         private float chasingSpeed = 1f;
         Mover mover;
@@ -37,6 +39,10 @@ namespace RPG.Combat
             baseStats = GetComponent<BaseStats>();
             currentWeaponConfig = defaultWeapon;
             currentWeapon = new LazyValue<Weapon>(SetupDefaultWeapon);
+            equipment = GetComponent<Equipment>();
+            if(equipment) {
+                equipment.equipmentUpdated += UpdateWeapon;
+            }
         }
 
         private Weapon SetupDefaultWeapon() {
@@ -65,6 +71,15 @@ namespace RPG.Combat
         public void EquipWeapon(WeaponConfig weapon) {
             currentWeaponConfig = weapon;
             currentWeapon.value =  AttachWeapon(weapon);
+        }
+
+        private void UpdateWeapon() {
+            WeaponConfig weaponInSlot = equipment.GetItemInSlot(EquipLocation.Weapon) as WeaponConfig;
+            if(weaponInSlot == null) {
+                EquipWeapon(defaultWeapon);
+            } else {
+                EquipWeapon(weaponInSlot);
+            }
         }
 
         private Weapon AttachWeapon(WeaponConfig weapon) {

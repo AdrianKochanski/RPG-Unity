@@ -76,11 +76,37 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1328342111746775959, guid: 38635f82f2f723a45b9d635ad8fc6a32,
+        type: 3}
+      propertyPath: m_Center.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1328342111746775959, guid: 38635f82f2f723a45b9d635ad8fc6a32,
+        type: 3}
+      propertyPath: m_Center.y
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1328342111746775959, guid: 38635f82f2f723a45b9d635ad8fc6a32,
+        type: 3}
+      propertyPath: m_Center.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1328342111746775959, guid: 38635f82f2f723a45b9d635ad8fc6a32,
+        type: 3}
+      propertyPath: m_Radius
+      value: 0.4
+      objectReference: {fileID: 0}
     - target: {fileID: 2823095281444913161, guid: 38635f82f2f723a45b9d635ad8fc6a32,
         type: 3}
       propertyPath: m_Name
       value: Fireball Pickup
       objectReference: {fileID: 0}
+    - target: {fileID: 6210989042876521739, guid: 38635f82f2f723a45b9d635ad8fc6a32,
+        type: 3}
+      propertyPath: pickupWeapon
+      value: 
+      objectReference: {fileID: 11400000, guid: 4bd6ba878a779f840a5b77309fc201a5,
+        type: 2}
     - target: {fileID: 7825684405886127703, guid: 38635f82f2f723a45b9d635ad8fc6a32,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -135,32 +161,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6210989042876521739, guid: 38635f82f2f723a45b9d635ad8fc6a32,
-        type: 3}
-      propertyPath: pickupWeapon
-      value: 
-      objectReference: {fileID: 11400000, guid: 4bd6ba878a779f840a5b77309fc201a5,
-        type: 2}
-    - target: {fileID: 1328342111746775959, guid: 38635f82f2f723a45b9d635ad8fc6a32,
-        type: 3}
-      propertyPath: m_Center.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1328342111746775959, guid: 38635f82f2f723a45b9d635ad8fc6a32,
-        type: 3}
-      propertyPath: m_Center.y
-      value: 0.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1328342111746775959, guid: 38635f82f2f723a45b9d635ad8fc6a32,
-        type: 3}
-      propertyPath: m_Center.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1328342111746775959, guid: 38635f82f2f723a45b9d635ad8fc6a32,
-        type: 3}
-      propertyPath: m_Radius
-      value: 0.4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 38635f82f2f723a45b9d635ad8fc6a32, type: 3}
