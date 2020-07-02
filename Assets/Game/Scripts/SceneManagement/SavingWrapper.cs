@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections;
-using RPG.Saving;
+using GameDevTV.Saving;
 using UnityEngine;
 
 namespace RPG.SceneManagement
@@ -30,6 +30,9 @@ namespace RPG.SceneManagement
             if(Input.GetKeyDown(KeyCode.S)){
                 Save();
             }
+            if(Input.GetKeyDown(KeyCode.Delete)) {
+                Delete();
+            }
         }
 
         public void Save()
@@ -39,7 +42,12 @@ namespace RPG.SceneManagement
 
         public void Load()
         {
-            GetComponent<SavingSystem>().Load(defaultSaveFile);
+            StartCoroutine(GetComponent<SavingSystem>().LoadLastScene(defaultSaveFile));
+        }
+
+        public void Delete()
+        {
+            GetComponent<SavingSystem>().Delete(defaultSaveFile);
         }
     }
 }
