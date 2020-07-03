@@ -1,0 +1,77 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a50dfc41d46b280439db4192d364f760, type: 3}
+  m_Name: Default Enemy Drops
+  m_EditorClassIdentifier: 
+  potentialDrops:
+  - item: {fileID: 11400000, guid: 292d65f653cbf9349ade6930dff3c00e, type: 2}
+    relativeChance:
+    - 50
+    - 33.1
+    - 22.2
+    - 13.5
+    - 7.5
+    minNumber: 0100000001000000010000000100000001000000
+    maxNumber: 0200000002000000020000000200000002000000
+  - item: {fileID: 11400000, guid: 9e582dc49e0bf9f4e909736a7319fcd1, type: 2}
+    relativeChance:
+    - 38
+    - 26.4
+    - 17.6
+    - 12.4
+    - 7.9
+    minNumber: 0100000001000000010000000100000001000000
+    maxNumber: 0200000002000000020000000200000002000000
+  - item: {fileID: 11400000, guid: 4bd6ba878a779f840a5b77309fc201a5, type: 2}
+    relativeChance:
+    - 0
+    - 5.3
+    - 11.6
+    - 20.2
+    - 35.3
+    minNumber: 0100000001000000010000000100000001000000
+    maxNumber: 0200000002000000020000000200000002000000
+  - item: {fileID: 11400000, guid: 2d4ebe161ee56cb43a440a0885d77b76, type: 2}
+    relativeChance:
+    - 50.8
+    - 39.9
+    - 30.4
+    - 18
+    - 7.5
+    minNumber: 0100000001000000010000000100000001000000
+    maxNumber: 0200000002000000020000000200000002000000
+  - item: {fileID: 11400000, guid: 6f920cd9f92060548aa55ba8d32af2dd, type: 2}
+    relativeChance:
+    - 40.6
+    - 46.7
+    - 52.3
+    - 40.2
+    - 22.6
+    minNumber: 0100000001000000010000000100000001000000
+    maxNumber: 0200000002000000020000000200000002000000
+  - item: {fileID: 11400000, guid: b55f5a96b0ce8f44d9a6cc856704804c, type: 2}
+    relativeChance:
+    - 3.1
+    - 10.6
+    - 19.5
+    - 32.3
+    - 50.7
+    minNumber: 0100000001000000010000000100000001000000
+    maxNumber: 0200000002000000020000000200000002000000
+  dropChancePercentage:
+  - 19.5
+  - 42.2
+  - 63.5
+  - 82.2
+  - 96.1
+  minDrops: 0100000001000000010000000200000002000000
+  maxDrops: 0200000003000000030000000400000004000000

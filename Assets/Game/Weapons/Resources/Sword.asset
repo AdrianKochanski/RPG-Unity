@@ -19,11 +19,13 @@ MonoBehaviour:
   pickup: {fileID: 969623778491159482, guid: eecf4b713a95aca4b909584317748938, type: 3}
   stackable: 0
   allowedEquipLocation: 5
+  additiveModifiers:
+  - stat: 4
+    value: 22
+  percentageModifiers: []
   animatorOverride: {fileID: 22100000, guid: 05f15129955e38541bc80b0f85cd8619, type: 2}
   equippedPrefab: {fileID: 6334657335153644486, guid: 80137251e2007974d8b11db2a42a771e,
     type: 3}
-  weaponDamage: 7
-  percentageDamageBonus: 80
   weaponRange: 2.5
   isRightHanded: 1
   projectile: {fileID: 0}

@@ -1,18 +1,14 @@
 using RPG.Attributes;
 using UnityEngine;
-using GameDevTV.Inventories;
-using RPG.Stats;
-using System.Collections.Generic;
+using RPG.Inventories;
 
 namespace RPG.Combat
 {
     [CreateAssetMenu(fileName = "Weapon", menuName = "Weapons/Make New Weapon", order = 0)]
-    public class WeaponConfig : EquipableItem, IModifierProvider
+    public class WeaponConfig : StatsEquipableItem
     {
         [SerializeField] AnimatorOverrideController animatorOverride = null;
         [SerializeField] Weapon equippedPrefab = null;
-        [SerializeField] float weaponDamage = 5f;
-        [SerializeField] float percentageDamageBonus = 0f;
         [SerializeField] float weaponRange = 2f;
         [SerializeField] bool isRightHanded = true;
         [SerializeField] Projectile projectile = null;
@@ -79,26 +75,6 @@ namespace RPG.Combat
 
         public float getWeaponRange(){
             return weaponRange;
-        }
-
-        public float getWeaponDamage(){
-            return weaponDamage;
-        }
-
-        public float GetPercentageDamageBonus() {
-            return percentageDamageBonus;
-        }
-
-        public IEnumerable<float> GetAdditiveModifiersFor(Stat stat) {
-            if (stat == Stat.Damage) {
-                yield return getWeaponDamage();
-            }
-        }
-
-        public IEnumerable<float> GetPercentageModifiersFor(Stat stat) {
-            if (stat == Stat.Damage) {
-                yield return GetPercentageDamageBonus();
-            }
         }
     }
 }
