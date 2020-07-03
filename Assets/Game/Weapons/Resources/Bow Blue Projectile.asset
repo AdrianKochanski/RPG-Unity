@@ -12,6 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c629540bd49e49d48ab3eaafefea831f, type: 3}
   m_Name: Bow Blue Projectile
   m_EditorClassIdentifier: 
+  itemID: 19856afb-8d7e-4727-9f8c-29f1a0ee7414
+  displayName: Blue Bow
+  description: Super blue bow
+  icon: {fileID: 21300000, guid: f588d850485d0ae479d73cf3bd0b7b00, type: 3}
+  pickup: {fileID: 9194736355536283787, guid: e9822f6dfbe378d4eb7484a3eb23052c, type: 3}
+  stackable: 0
+  allowedEquipLocation: 5
   animatorOverride: {fileID: 22100000, guid: ce3142b0d96e2f446a016354e3e3c9bb, type: 2}
   equippedPrefab: {fileID: 898194768324629684, guid: d9c7e0dca2a69504e9508415060a474b,
     type: 3}

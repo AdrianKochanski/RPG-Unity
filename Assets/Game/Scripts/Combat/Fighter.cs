@@ -10,7 +10,7 @@ using UnityEngine;
 
 namespace RPG.Combat
 {
-    public class Fighter : MonoBehaviour, IAction, ISaveable, IModifierProvider
+    public class Fighter : MonoBehaviour, IAction, ISaveable
     {
         
         [SerializeField] float timeBetweenAttacks = 1f;
@@ -130,18 +130,6 @@ namespace RPG.Combat
         private void TriggerStartAttack() {
             animator.ResetTrigger("stopAttack");
             animator.SetTrigger("attack");
-        }
-
-        public IEnumerable<float> GetAdditiveModifiersFor(Stat stat) {
-            if(stat == Stat.Damage) {
-                yield return currentWeaponConfig.getWeaponDamage();
-            }
-        }
-
-        public IEnumerable<float> GetPercentageModifiersFor(Stat stat) {
-            if (stat == Stat.Damage) {
-                yield return currentWeaponConfig.GetPercentageDamageBonus();
-            }
         }
 
         //Animation Event on Hit the object

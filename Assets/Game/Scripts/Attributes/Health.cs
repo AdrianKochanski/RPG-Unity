@@ -42,10 +42,12 @@ namespace RPG.Attributes {
 
         private void OnEnable() {
             baseStats.onLevelUp += RegenerateHealth;
+            baseStats.onEquipmentChange += CalculateMaxHealth;
         }
 
         private void OnDisable() {
             baseStats.onLevelUp -= RegenerateHealth;
+            baseStats.onEquipmentChange -= CalculateMaxHealth;
         }
 
         private void Start() {
@@ -59,13 +61,17 @@ namespace RPG.Attributes {
             // print("health percent: " + GetHealthPercentage() + " ,health regen: " + levelUpRegeneration);
             // print("current: " + health + " ,max: " + maxHealth);
             // print("Health percentage: " + healthPercentage);
-            maxHealth.value = GetMaxHealthStat();
+            CalculateMaxHealth();
             float newHealth = maxHealth.value * healthPercentage / 100;
             if(newHealth > maxHealth.value) {
                 health.value = maxHealth.value;
             } else {
                 health.value = newHealth;
             }
+        }
+
+        private void CalculateMaxHealth() {
+            maxHealth.value = baseStats.GetStat(Stat.Health);
         }
 
         private float GetMaxHealthStat() {

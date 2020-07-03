@@ -1,6 +1,7 @@
 using System;
 using GameDevTV.Utils;
 using UnityEngine;
+using GameDevTV.Inventories;
 
 namespace RPG.Stats
 {
@@ -13,12 +14,15 @@ namespace RPG.Stats
         [SerializeField] Boolean shouldUseModifiers = false;
 
         public event Action onLevelUp;
+        public event Action onEquipmentChange;
 
         LazyValue<int> currentLevel;
 
         Experience experience;
+        Equipment equipment;
         
         private void Awake() {
+            equipment = GetComponent<Equipment>(); 
             experience = GetComponent<Experience>();
             currentLevel = new LazyValue<int>(CalculateLevel);
         }
@@ -27,11 +31,17 @@ namespace RPG.Stats
             if (experience != null) {
                 experience.onExperienceGained += UpdateLevel;
             }
+            if (equipment != null) {
+                equipment.equipmentUpdated += onEquipmentChange;
+            }
         }
 
         private void OnDisable() {
             if (experience != null) {
                 experience.onExperienceGained -= UpdateLevel;
+            }
+            if (equipment != null) {
+                equipment.equipmentUpdated -= onEquipmentChange;
             }
         }
 

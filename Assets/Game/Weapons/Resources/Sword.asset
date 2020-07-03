@@ -12,6 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c629540bd49e49d48ab3eaafefea831f, type: 3}
   m_Name: Sword
   m_EditorClassIdentifier: 
+  itemID: aa58ef47-fab6-490b-8dc3-ede8ce4fb3a3
+  displayName: Sword
+  description: Super sword of destiny
+  icon: {fileID: 21300000, guid: d19901b0ee3c38743a7d383bd484b0b5, type: 3}
+  pickup: {fileID: 969623778491159482, guid: eecf4b713a95aca4b909584317748938, type: 3}
+  stackable: 0
+  allowedEquipLocation: 5
   animatorOverride: {fileID: 22100000, guid: 05f15129955e38541bc80b0f85cd8619, type: 2}
   equippedPrefab: {fileID: 6334657335153644486, guid: 80137251e2007974d8b11db2a42a771e,
     type: 3}
